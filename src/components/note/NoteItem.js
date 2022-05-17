@@ -1,9 +1,11 @@
 import React from 'react';
 
-function NoteItem() {
+function NoteItem({ title, body, createdAt }) {
   return (
-    <div className="note__item">
-      Note Item
+    <div className="note-item">
+      <div className='note-item__title'>{title}</div>
+      <div className='note-item__body'>{body}</div>
+      <div className='note-item__date'>{createdAt}</div>
     </div>
   );
 }

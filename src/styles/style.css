@@ -2,6 +2,7 @@
   --color-primary: #323232;
   --color-white: #ffffff;
   --color-grey: #a9a9b3;
+  --color-grey-light: #9aa0a6;
   --bg-dark: #252627;
   --bg-dark-secondary: #292a2d;
 }
@@ -25,7 +26,7 @@ textarea {
   font-family: 'Source Sans Pro', sans-serif;
   background-color: transparent;
   color: var(--color-white);
-  border: 1px solid var(--color-white);
+  border: 2px solid var(--color-white);
   border-radius: 4px;
 }
 
@@ -117,13 +118,22 @@ textarea::placeholder {
   cursor: pointer;
 }
 
-.note-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: minmax(min-content, max-content);
-  gap: 16px;
+.section-notelist {
   padding-left: 16px;
   margin-bottom: 48px;
+}
+
+.section-notelist__subtitle {
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  color: var(--color-grey-light);
+}
+
+.note-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: minmax(min-content, max-content);
+  gap: 16px;
 }
 
 .note-list__empty-message {
@@ -136,18 +146,21 @@ textarea::placeholder {
   border-radius: 4px;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
-}
-
-.note-item__content {
   padding: 12px;
-  flex: 1;
+  flex-direction: column;
 }
 
 .note-item__title {
   text-overflow: ellipsis;
-  overflow: hidden;
+  font-weight: 600;
+  font-size: 18px;
   white-space: nowrap;
+  margin-bottom: 6px;
+}
+
+.note-item__body {
+  font-size: 14px;
+  height: 100%;
   margin-bottom: 4px;
 }
 
@@ -155,10 +168,6 @@ textarea::placeholder {
   font-size: 12px;
   margin-bottom: 8px;
   color: #aaa;
-}
-
-.note-item__body {
-  font-size: 14px;
 }
 
 .note-item__action {
