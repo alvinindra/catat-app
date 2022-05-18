@@ -43,6 +43,12 @@ class NoteForm extends React.Component {
   onSubmitEventHandler (event) {
     event.preventDefault()
     this.props.addNote(this.state)
+    this.setState(() => {
+      return {
+        title: '',
+        body: ''
+      }
+    })
   }
 
   render () {
@@ -66,6 +72,7 @@ class NoteForm extends React.Component {
             className='note-form__body'
             type='text'
             placeholder='Tuliskan catatanmu di sini ...'
+            value={this.state.body}
             onChange={this.onBodyChangeEventHandler}
             resize='false'
             required

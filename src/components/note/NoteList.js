@@ -3,22 +3,35 @@ import React from 'react'
 import NoteListActive from './NoteListActive'
 import NoteListArchieved from './NoteListArchieved'
 
-function NoteList ({ notes }) {
-  return (
-    <section className='section-notelist'>
-      <div className='section-notelist__header'>
-        <h1>Daftar Catatan</h1>
-        <input
-          className='note-form__title'
-          type='text'
-          placeholder='Cari judul ...'
-          required
-        />
-      </div>
-      <NoteListActive notes={notes} />
-      <NoteListArchieved notes={notes} />
-    </section>
-  )
+class NoteList extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.onSearchHandler = this.onSearchHandler.bind(this)
+  }
+
+  onSearchHandler (event) {
+    this.props.onSearchingHandler(event.target.value)
+  }
+
+  render () {
+    return (
+      <section className='section-notelist'>
+        <div className='section-notelist__header'>
+          <h1>Daftar Catatan</h1>
+          <input
+            className='note-form__title'
+            type='text'
+            placeholder='Cari judul ...'
+            onChange={this.onSearchHandler}
+            required
+          />
+        </div>
+        <NoteListActive notes={this.props.notes} />
+        <NoteListArchieved notes={this.props.notes} />
+      </section>
+    )
+  }
 }
 
 export default NoteList
