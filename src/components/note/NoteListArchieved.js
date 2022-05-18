@@ -1,11 +1,24 @@
-import React from "react";
+import React from 'react'
 
-function NoteListArchieved() {
+import NoteItem from './NoteItem'
+
+function NoteListArchieved ({ notes }) {
+  const notesArchieved = notes.filter(note => note.isArchieved)
+
   return (
-    <div>
-      Note List Active
-    </div>
-  );
+    <React.Fragment>
+      <h4 className='section-notelist__subtitle'>Arsip</h4>
+      {notesArchieved.length ? (
+        <div className='note-list spacing'>
+          {notesArchieved.map(note => (
+            <NoteItem key={note.id} {...note} />
+          ))}
+        </div>
+      ) : (
+        <div className='note-list__empty'>Tidak ada catatan</div>
+      )}
+    </React.Fragment>
+  )
 }
 
 export default NoteListArchieved

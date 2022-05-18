@@ -1,28 +1,24 @@
-import React from "react";
-import NoteItem from "./NoteItem";
+import React from 'react'
 
-function NoteList({ notes }) {
+import NoteListActive from './NoteListActive'
+import NoteListArchieved from './NoteListArchieved'
+
+function NoteList ({ notes }) {
   return (
-    <section className="section-notelist">
-      <h1 className="spacing">Daftar Catatan</h1>
-      <h4 className="section-notelist__subtitle">Catatan Aktif</h4>
-      <div className="note-list spacing">
-        {
-          notes.map((note) => (
-            <NoteItem key={note.id} {...note} />
-          ))
-        }
+    <section className='section-notelist'>
+      <div className='section-notelist__header'>
+        <h1>Daftar Catatan</h1>
+        <input
+          className='note-form__title'
+          type='text'
+          placeholder='Cari judul ...'
+          required
+        />
       </div>
-      <h4 className="section-notelist__subtitle">Arsip</h4>
-      <div className="note-list">
-        {
-          notes.map((note) => (
-            <NoteItem key={note.id} {...note} />
-          ))
-        }
-      </div>
+      <NoteListActive notes={notes} />
+      <NoteListArchieved notes={notes} />
     </section>
-  );
+  )
 }
 
 export default NoteList

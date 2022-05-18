@@ -1,11 +1,23 @@
-import React from "react";
+import React from 'react'
 
-function NoteListActive() {
+import NoteItem from './NoteItem'
+
+function NoteListActive ({ notes }) {
+  const notesActive = notes.filter(note => !note.isArchieved)
   return (
-    <div>
-      Note List Active
-    </div>
-  );
+    <React.Fragment>
+      <h4 className='section-notelist__subtitle'>Catatan Aktif</h4>
+      {notesActive.length ? (
+        <div className='note-list spacing'>
+          {notesActive.map(note => (
+            <NoteItem key={note.id} {...note} />
+          ))}
+        </div>
+      ) : (
+        <div className='note-list__empty'>Tidak ada catatan</div>
+      )}
+    </React.Fragment>
+  )
 }
 
 export default NoteListActive

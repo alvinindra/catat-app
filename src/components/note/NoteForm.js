@@ -1,18 +1,80 @@
-import React from "react";
+import React from 'react'
 
-function NoteForm() {
-  return (
-    <aside className="note-form">
-      <h1 className="spacing">Buat Catatan</h1>
-      <form>
-        <p className="note-form__title-limit">Sisa karakter: 50</p>
-        <input className="note-form__title" type="text" placeholder="Tulis judul ..." required />
-        <textarea className="note-form__body" type="text" placeholder="Tuliskan catatanmu di sini ..." required>
-        </textarea>
-        <button type="submit">Catat</button>
-      </form>
-    </aside>
-  );
+class NoteForm extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      title: '',
+      body: ''
+    }
+
+    this.handleLimitTitle = this.handleLimitTitle.bind(this)
+    this.onBodyChangeEventHandler = this.onBodyChangeEventHandler.bind(this)
+    this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this)
+  }
+
+  handleLimitTitle (event) {
+    const inputTitle = event.target.value
+    let title = ''
+
+    if (inputTitle.length > 40) {
+      title = inputTitle.substring(0, 40)
+    } else {
+      title = inputTitle
+    }
+
+    this.setState(() => {
+      return {
+        title: title
+      }
+    })
+  }
+
+  onBodyChangeEventHandler (event) {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        body: event.target.value
+      }
+    })
+  }
+
+  onSubmitEventHandler (event) {
+    event.preventDefault()
+    this.props.addNote(this.state)
+  }
+
+  render () {
+    return (
+      <aside className='note-form'>
+        <h1 className='spacing'>Buat Catatan</h1>
+        <form onSubmit={this.onSubmitEventHandler}>
+          <p className='note-form__title-limit'>
+            Sisa karakter: {this.state.title.length}/40
+          </p>
+          <input
+            className='note-form__title'
+            type='text'
+            placeholder='Tulis judul ...'
+            value={this.state.title}
+            onChange={this.handleLimitTitle}
+            required
+          />
+          <textarea
+            rows='10'
+            className='note-form__body'
+            type='text'
+            placeholder='Tuliskan catatanmu di sini ...'
+            onChange={this.onBodyChangeEventHandler}
+            resize='false'
+            required
+          ></textarea>
+          <button type='submit'>Catat</button>
+        </form>
+      </aside>
+    )
+  }
 }
 
 export default NoteForm
