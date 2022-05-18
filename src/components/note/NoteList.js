@@ -27,8 +27,16 @@ class NoteList extends React.Component {
             required
           />
         </div>
-        <NoteListActive notes={this.props.notes} />
-        <NoteListArchieved notes={this.props.notes} />
+        <NoteListActive
+          notes={this.props.notes}
+          onDeleteActionHandler={this.props.onDeleteActionClicked}
+          onArchieveActionHandler={this.props.onArchieveActionClicked}
+        />
+        <NoteListArchieved
+          notes={this.props.notes}
+          onDeleteActionHandler={this.props.onDeleteActionClicked}
+          onArchieveActionHandler={this.props.onArchieveActionClicked}
+        />
       </section>
     )
   }

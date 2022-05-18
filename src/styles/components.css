@@ -113,8 +113,50 @@ textarea {
   border-radius: 4px;
   overflow: hidden;
   display: flex;
-  padding: 12px;
   flex-direction: column;
+}
+
+.note-item__body {
+  padding: 12px;
+  height: 100%;
+}
+
+.note-item__footer {
+  padding: 0;
+}
+
+.note-item__container-action {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.note-item__button {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px;
+  background-color: transparent;
+  border-style: solid;
+  border-color: var(--color-white);
+  color: var(--color-white);
+  border-left: 0;
+  border-bottom: 0;
+  cursor: pointer;
+}
+
+.note-item__button:last-child {
+  border-right: 0;
+}
+
+.note-item__button.button--archieve:hover {
+  background-color: var(--color-white);
+  color: var(--color-green);
+}
+
+.note-item__button.button--delete:hover {
+  background-color: var(--color-white);
+  color: var(--color-danger);
 }
 
 .note-item__title {
@@ -124,15 +166,15 @@ textarea {
   margin-bottom: 6px;
 }
 
-.note-item__body {
+.note-item__desc {
   font-size: 14px;
-  height: 100%;
   margin-bottom: 4px;
 }
 
 .note-item__date {
   font-size: 12px;
-  margin-bottom: 8px;
+  padding: 0 12px;
+  margin-bottom: 12px;
   color: #aaa;
 }
 

@@ -7,7 +7,7 @@ function Footer () {
       <a href='https://alvinindra.space' target='_blank' rel='noreferrer'>
         Alvin Indra
       </a>
-      © {new Date().getFullYear()}
+      &nbsp; © {new Date().getFullYear()}
     </footer>
   )
 }

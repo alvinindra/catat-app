@@ -2,7 +2,11 @@ import React from 'react'
 
 import NoteItem from './NoteItem'
 
-function NoteListActive ({ notes }) {
+function NoteListActive ({
+  notes,
+  onDeleteActionHandler,
+  onArchieveActionHandler
+}) {
   const notesActive = notes.filter(note => !note.isArchieved)
   return (
     <React.Fragment>
@@ -10,7 +14,12 @@ function NoteListActive ({ notes }) {
       {notesActive.length ? (
         <div className='note-list spacing'>
           {notesActive.map(note => (
-            <NoteItem key={note.id} {...note} />
+            <NoteItem
+              key={note.id}
+              {...note}
+              onDeleteActionHandler={onDeleteActionHandler}
+              onArchieveActionHandler={onArchieveActionHandler}
+            />
           ))}
         </div>
       ) : (

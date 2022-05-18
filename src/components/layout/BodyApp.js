@@ -16,6 +16,8 @@ class BodyApp extends React.Component {
     )
     this.resetNotesData = this.resetNotesData.bind(this)
     this.onSearchingHandler = this.onSearchingHandler.bind(this)
+    this.onArchieveActionClicked = this.onArchieveActionClicked.bind(this)
+    this.onDeleteActionClicked = this.onDeleteActionClicked.bind(this)
   }
 
   resetNotesData () {
@@ -60,6 +62,40 @@ class BodyApp extends React.Component {
     })
   }
 
+  onArchieveActionClicked (id) {
+    const notes = this.state.notes.map(note => {
+      if (note.id === id) {
+        return { ...note, isArchieved: !note.isArchieved }
+      }
+
+      return note
+    })
+
+    this.setState(() => {
+      return {
+        initialData: notes,
+        notes: notes
+      }
+    })
+  }
+
+  onDeleteActionClicked (id) {
+    const isAllowed = window.confirm(
+      'Apakah kamu yakin ingin menghapus catatan?'
+    )
+
+    if (isAllowed) {
+      const notes = this.state.notes.filter(note => note.id !== id)
+
+      this.setState(() => {
+        return {
+          initialData: notes,
+          notes: notes
+        }
+      })
+    }
+  }
+
   render () {
     return (
       <main className='body-app'>
@@ -67,6 +103,8 @@ class BodyApp extends React.Component {
         <NoteList
           notes={this.state.notes}
           onSearchingHandler={this.onSearchingHandler}
+          onArchieveActionClicked={this.onArchieveActionClicked}
+          onDeleteActionClicked={this.onDeleteActionClicked}
         />
       </main>
     )
